@@ -1,0 +1,108 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Sistema de Addendas {% block title %}  {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
+   <link rel="stylesheet" href="">
+   <style>
+     #modal_addenda{
+      /*background-color: rgba(248, 248, 248, 0.171) !important;*/
+      overflow: visible;
+     }
+
+   </style>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-light">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Menú</span>
+	        </button>
+        </div>
+	  		<h1><a href="/" class="logo">YEZDO + FACTURA</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="/"><span class="fa fa-home mr-3"></span> Inicio</a>
+          </li>
+          <li>
+              <a href="#"><span class="fa fa-user mr-3"></span> Addendas</a>
+          </li>
+          
+        </ul>
+
+    	</nav>
+
+      
+
+        <!-- Start Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5 bg-light">
+        <div style="border: none;" class="container-fluid card bg-light">
+          
+          {% block content %}
+        
+          {% endblock %}
+        </div>
+      </div><!--Finish Page Content  -->
+      
+
+
+		</div>
+
+    
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+        
+
+         //ocultar el conbtenedor de las addendas
+         $('#contenedor_liverpool').hide();
+
+
+         //resetea el select
+         $('#select_addendas').val("Seleccionar");
+
+
+          $('#select_addendas').on('change',function(){
+          //Obtener el dato del value seleccionado en el select
+          var valor = $(this).val();
+          //alert(valor);
+          if (valor ==1){
+            $('#contenedor_liverpool').show();
+            //$('#Contenedor').html("");
+            
+          }else{
+            if(valor != 1){
+              $('#contenedor_liverpool').hide();
+            }
+          }
+
+        });
+      });
+    </script>
+    <!--Script modal-->
+    <script type="text/javascript">
+      $('#myModal').on('shown.bs.modal', function () {
+        $('#myModal').removeClass('modal-backdrop');
+      })
+    
+    
+    
+    </script>
+  </body>
+</html>
