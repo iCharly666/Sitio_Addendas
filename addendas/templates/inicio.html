@@ -1,127 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
-{% load static %}
 
 
 
 {% block content %}
   <div class="card-body ">
      
-        
-   
-    <!--  <a id="ver_doc_btn" role="button" href="{{ columna.documento.url }}" download="{{columna.documento.name}}" class="btn btn-danger"><i class="fa fa-file-pdf fa-1x" title="Visualizar xml"></i></a>          
-          <br>
-          <br>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Nombre de la addenda</span>
-            </div>
-            <input type="text" class="form-control bg-light">
-            
-        </div>
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">Nombre de la addenda</span>
-            </div>
-            <input type="text" class="form-control">
-            
-        </div>-->
-   
-
     <div style="text-align: center;"><!-- end Div contenido centrado-->
-      <div style="background-color: lightgrey;">
-        {{ xml_ade }}
-      </div>
-
-
+      
      
-     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addenda">
-  Launch demo modal
-      </button>
-
-
-    <div class="modal" id="modal_addenda" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  -->
-
-      <span style="font-family: Arial, Helvetica, sans-serif; font-size: 35px;">Generador de Addendas</span>
-      <br>
-      <div>
-        <span style="font-family: Arial, Helvetica, sans-serif; font-size: 20px;">Seleccione la Addenda que requiera agregar</span>
-        <br>
-        <select id="select_addendas" class="custom-select" style="width: 25rem;" >
-          <option selected >Seleccionar</option>
-          <option value="1">Liverpool</option>
-          <option value="2">Bancomer</option>
-          <option value="3">Santander</option>
-          <option value="4">Electra</option>
-          <option value="5">Aurrera</option>
-          <option value="6">Chedrawil</option>
-        </select>
-      </div>
-      <br>
-      <br>
-      <br>
-      <form method="POST" action="/" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="file_xml" id="file_xml" title="Dar clic para agregar el XML">
-        <input type="submit" value="Subir XML" id="send_xml">
-      </form>
-      <br>
-      
-      <br>
-      <div  id="Contenedor"> <!--Contenedor donde estarán los campos de las addendas-->
-        <span>Campos de la Addenda seleecionada</span>
-        <div id="contenedor_liverpool">
-          <span>addenda Liverpool</span>
-          <div class="row justify-content-center" id="liverpool">
-            <div class="col-4">
-              <div class="input-group-prepend">
-                <span id="inputGroup-sizing-sm" ">Contenedor 1:</span>
-              </div>
-              <input type="text" class="form-control" style="background-color: rgb(231, 231, 231); color: black;">
-            </div>
-  
-            <div class="col-4">
-              <div class="input-group-prepend">
-                <span id="inputGroup-sizing-sm" ">Contenedor 2:</span>
-              </div>
-              <input type="text" class="form-control" style="background-color: rgb(231, 231, 231); color: black;">
-            </div>
-          </div>
-          <div class="row justify-content-center" id="liverpool">
-            <div class="col-6">
-              <div class="input-group-prepend">
-                <span id="inputGroup-sizing-sm" ">Contenedor 3:</span>
-              </div>
-              <input type="text" class="form-control" style="background-color: rgb(231, 231, 231); color: black;">
-            </div>
-          </div>
-        </div><!--Fin contenedor addenda-->
-       
-        
-      </div><!--Fin Contenedor donde estarán los campos de las addendas-->
-      
-    
-      
     </div><!-- Fin Div contenido centrado-->
 
   </div><!--Fin card-body-->

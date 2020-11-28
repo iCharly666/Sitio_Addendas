@@ -38,7 +38,9 @@
           <li>
               <a href="#"><span class="fa fa-user mr-3"></span> Addendas</a>
           </li>
-          
+          <li>
+            <a href="https://validador.finkok.com/" target="blank"><span class="fa fa-globe mr-3"></span> Validar XML</a>
+        </li>
         </ul>
 
     	</nav>
@@ -46,7 +48,7 @@
       
 
         <!-- Start Page Content  -->
-      <div id="content" class="p-4 p-md-5 pt-5 bg-light">
+      <div id="content" class="p-4 p-md-5 pt-5 bg-light" style="color: black;">
         <div style="border: none;" class="container-fluid card bg-light">
           
           {% block content %}
@@ -71,7 +73,7 @@
         
 
          //ocultar el conbtenedor de las addendas
-         $('#contenedor_liverpool').hide();
+         $('#contenedor_Terra_Multitransportes').hide();
 
 
          //resetea el select
@@ -83,12 +85,11 @@
           var valor = $(this).val();
           //alert(valor);
           if (valor ==1){
-            $('#contenedor_liverpool').show();
+            $('#contenedor_Terra_Multitransportes').show();
             //$('#Contenedor').html("");
-            
           }else{
             if(valor != 1){
-              $('#contenedor_liverpool').hide();
+              $('#contenedor_Terra_Multitransportes').hide();
             }
           }
 
@@ -99,10 +100,11 @@
     <script type="text/javascript">
       $('#myModal').on('shown.bs.modal', function () {
         $('#myModal').removeClass('modal-backdrop');
-      })
-    
-    
-    
+      })  
+    </script>
+
+    <script>
+
     </script>
   </body>
 </html>
