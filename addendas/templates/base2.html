@@ -22,6 +22,7 @@
           max-height: 200px;
           overflow-x: hidden;
         }
+       
     </style>
     <style>
         @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
@@ -151,7 +152,7 @@
 
     </style>
   </head>
-  <body>
+  <body style="background-color: rgb(226, 226, 226);">
             
     <nav class="main-menu">
         <ul class="">
@@ -169,36 +170,9 @@
                 <div class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdownMenuLink">
                   <span style="font-size: 15px;">&nbsp; &nbsp; Selecciona una addenda</span>
                   <hr style="background-color: rgb(126, 201, 107); width: 10em;">
-                  <a class="dropdown-item" href="http://127.0.0.1:8000/terra_multitransportes">Terra Multitransportes <br> S.A de C.V.</a>
-                  <a class="dropdown-item" href="http://127.0.0.1:8000/open_lenguage">OPEN LANGUAGE <br> CENTER SC</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  <a class="dropdown-item" href="http://172.16.100.94:8080/terra_multitransportes">Terra Multitransportes <br> S.A de C.V.</a>
+                  <a class="dropdown-item" href="http://172.16.100.94:8080/open_lenguage">OPEN LANGUAGE <br> CENTER SC</a>
+                  
                 </div>
             </li>
             <li class="has-subnav">
@@ -220,10 +194,18 @@
         -->
     </nav>
     <div style="border: none;" class="container ">
-          
-      {% block content %}
+      <div  style="border: none;">
+        <p></p>
+        {% block content %}
     
-      {% endblock %}
+        {% endblock %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <p></p>
+      </div>
+      
   </div>
   
 
@@ -233,6 +215,7 @@
     <script src="{% static 'js/main.js' %}"></script>
     
     <script type="text/javascript">
+    
   //    $(document).ready(function(){
   //        //ocultar el conbtenedor de las addendas
   //       $('#contenedor_Terra_Multitransportes').hide();
@@ -270,7 +253,7 @@
     </script>
 
     <script>
-
+     
     </script>
 
   </body>

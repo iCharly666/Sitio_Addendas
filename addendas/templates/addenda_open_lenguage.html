@@ -2,16 +2,17 @@
 
 
 {% block content %}
-<div class="card-body ">
-  <div style="text-align: center; color: black;"><!-- Div contenido centrado-->
+<div class="card-body " style="padding-top: 6em;">
+  <div class="shadow-lg p-3 mb-5 bg-white rounded" style="text-align: center; color: black;"><!-- Div contenido centrado-->
   
 
       <form method="POST" action="open_lenguage" enctype="multipart/form-data">
         {% csrf_token %}
         <br>
         <!--Apartado del formulario para cargar el XML-->
-        <span id="inputGroup-sizing-sm" style="font-size: 20px;">Suba el XML en el que requiere agregar la Addenda:</span>
+        <span id="inputGroup-sizing-sm" style="font-size: 20px;font-family: sans-serif;">Suba el XML en el que requiere agregar la Addenda:</span>
         <br>
+        <hr>
         <input type="file" name="file_xml" id="file_xml" title="Dar clic para agregar el XML" required>
         <br>
         <br>
@@ -19,14 +20,14 @@
         <div class="row justify-content-center" id="liverpool">
           <div class="col-4">
         <div class="input-group-prepend">
-          <span id="inputGroup-sizing-sm" ">Purchase_Order:</span>
+          <span id="inputGroup-sizing-sm" ">Orden de Compra:</span>
         </div>
         <input name="Purchase_Order" type="text" class="form-control" style="background-color: rgb(231, 231, 231); color: black;" title="Ingrese la información">
           </div>
 
           <div class="col-4">
         <div class="input-group-prepend">
-          <span id="inputGroup-sizing-sm" ">FileNumber_GL:</span>
+          <span id="inputGroup-sizing-sm" ">No. Expediente GL:</span>
         </div>
         <input name="FileNumber_GL" type="text" class="form-control" style="background-color: rgb(231, 231, 231); color: black;">
           </div>
@@ -34,13 +35,13 @@
         <div class="row justify-content-center" id="liverpool">
           <div class="col-4">
         <div class="input-group-prepend">
-          <span id="inputGroup-sizing-sm" ">Branch_Centre:</span>
+          <span id="inputGroup-sizing-sm" ">Centro de Sucursal:</span>
         </div>
         <input name="Branch_Centre" type="text" class="form-control" style="background-color: rgb(231, 231, 231); color: black;">
           </div>
           <div class="col-4">
         <div class="input-group-prepend">
-          <span id="inputGroup-sizing-sm" ">TransportRef:</span>
+          <span id="inputGroup-sizing-sm" ">REF Transporte:</span>
         </div>
         <input name="TransportRef" type="text" class="form-control" style="background-color: rgb(231, 231, 231); color: black;">
           </div>
@@ -50,7 +51,13 @@
         <p></p>
       </form>
 
-      {{ xml_ade }}
+      <a href="" ></a>
+
+      <textarea name="" id="" cols="45" rows="10">
+        {{ xml_ade }}
+      </textarea>
+      
+      {{ pdf }}
       
   </div><!-- Fin Div contenido centrado-->
 </div><!--Fin card-body-->

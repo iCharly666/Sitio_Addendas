@@ -1,19 +1,20 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.urls import reverse
 from lxml import etree
 from pdb import set_trace
 from sistema.models import Add_xml, Xml_Addenda
 from django.template.loader import render_to_string
 import xml.etree.ElementTree as ET
 
+from reportlab.pdfgen import canvas
 
 
 # Create your views here.
 
 
 def Inicio(request):
-    
-
-  
+     
     
     
     
@@ -86,6 +87,7 @@ def open_lenguge(request):
     xml_string = ''
     xml_en_binario = ''
     xml_con_addenda = ''
+    c = ''
     try:
 
         xml_upload = request.FILES.get('file_xml')
@@ -134,13 +136,43 @@ def open_lenguge(request):
             add_integrada = etree.tostring(addenda)
     
             ###Agregamos la adenda en el xml se agregará en el último nodo el cual es complemento.
+            #set_trace()
             xml_en_binario.append(addenda)
             xml_con_addenda = etree.tostring(xml_en_binario, encoding='UTF-8', xml_declaration=True).decode()
             print(type(xml_con_addenda))
+            
+            data = xml_con_addenda
+            response = HttpResponse(data, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            
+            #request.build_absolute_uri(reverse('Descargar_xml', args=(xml_con_addenda)))
+
+
+
+            ##------apartado para crear  PDF ----------
+
+            #datos_xml_addenda = etree.fromstring(xml_con_addenda)
+
+            version = xml_en_binario.get('Version')
+            print('Resultado', version)
+
+
+
+            #c = canvas.Canvas("/home/hsanchez/Documentos/addendas_sitio/addendas/archs_pdf/#ejemplo.pdf")
+            #c.drawString(100, 750, "Hola mundo PDF!")
+            #c.save()
+
     except NameError:
         print("Error")
 
-    return render(request, 'addenda_open_lenguage.html',{'xml_ade':xml_con_addenda} )
+    return render(request, 'addenda_open_lenguage.html',{'xml_ade':xml_con_addenda, 'pdf':c} )
+
+
+def Descargar_xml(request, xml_con_addenda):
+    response['Content-Disposition'] = 'attachment; xml_con_addenda={}'.format(xml_con_addenda)
+
+    return render(request)
+
+
 
 ###Opción 1
 ##--------------------------------------------------------------------------------
