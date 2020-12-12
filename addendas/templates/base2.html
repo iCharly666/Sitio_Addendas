@@ -213,7 +213,8 @@
     <script src="{% static 'js/popper.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>var csrftoken = "{{  csrf_token  }}";</script>
     <script type="text/javascript">
     
   //    $(document).ready(function(){
@@ -244,6 +245,25 @@
   //        }
   //      });
   //    });
+    </script>
+    <script type="text/javascript">
+      $(document).on("click", "#descargar_pdf", function(e){
+        e.preventDefault()
+        
+        var token = csrftoken;
+        let data = {
+            'opcion': 'descargar',
+            'csrfmiddlewaretoken': token,
+        }
+        $.ajax({
+            'type': "POST",
+            'url': "/open_lenguage",
+            'data': data,
+            'dataType': "json",
+        });
+
+
+      });
     </script>
     <!--Script modal-->
     <script type="text/javascript">

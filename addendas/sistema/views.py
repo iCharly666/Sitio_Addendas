@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse
@@ -7,17 +9,18 @@ from sistema.models import Add_xml, Xml_Addenda
 from django.template.loader import render_to_string
 import xml.etree.ElementTree as ET
 
+
+from django.views.generic import ListView, View
 from reportlab.pdfgen import canvas
-
-
+from reportlab.lib.pagesizes import A4
+from io import BytesIO
+import os
 # Create your views here.
 
 
+
 def Inicio(request):
-     
-    
-    
-    
+   
 
     return render(request, 'inicio.html')
 
@@ -146,31 +149,113 @@ def open_lenguge(request):
             
             #request.build_absolute_uri(reverse('Descargar_xml', args=(xml_con_addenda)))
 
+             ##----Extraer los valores del XML
+            
+            print("-----Datos Comprobante-----")
+            #Datos comprobante
+            folio = xml_en_binario.get('Folio')
+            print('folio', folio)
+            serie = xml_en_binario.get('Serie')
+            print('folio', serie)
+            no_certificado = xml_en_binario.get('NoCertificado')
+            print('no_certificado', no_certificado)
+            fecha_emision = xml_en_binario.get('Fecha')
+            print('fecha emision', fecha_emision)
+            sello = xml_en_binario.get('Sello')
+            print('sello', sello)
+            tipo_comprobante = xml_en_binario.get('TipoComprobante')
+            print('tipo comprobante', tipo_comprobante)
+
+            print("-----Datos SAT-----")
+            #Datos del sat
+            uid = xml_en_binario[4][0].get('UUID')
+            print('UUID', uid)
+            fecha_timbrado = xml_en_binario[4][0].get('FechaTimbrado')
+            print('Fecha timbrado', fecha_timbrado)
+            sello_sat = xml_en_binario[4][0].get('SelloSat')
+            print('Sello SAT', sello_sat)
+            csd_sat = xml_en_binario[4][0].get('NoCertificadoSAT')
+            print('csd sat', csd_sat)
+
+            print("-----Datos Pago-----")
+            #Datos de pago
+            metodo_pago = xml_en_binario.get('MetodoPago')
+            print('metodo pago', metodo_pago)
+            forma_pago = xml_en_binario.get('FormaPago')
+            print('forma pago', forma_pago)
+            moneda = xml_en_binario.get('Moneda')
+            print('moneda', moneda)
+            tipo_cambio = xml_en_binario.get('TipoCambio')
+            print('moneda', tipo_cambio)
+            subtotal = xml_en_binario.get('SubTotal')
+            print('sub total', subtotal)
+            total = xml_en_binario.get('Total')
+            print('total', total)
+
+            print("-----Emisor-----")
+            #Datos del emisor
+            razon_social_emisor = xml_en_binario[0].get('Nombre')
+            print('Razon social Emisor', razon_social_emisor)
+            regimen_fiscal_emisor = xml_en_binario[0].get('RegimenFiscal')
+            print('regimen fiscal Emisor', regimen_fiscal_emisor)
+            rfc_emisor = xml_en_binario[0].get('Rfc')
+            print('Razon social Emisor', rfc_emisor)
+
+            print("-----Receptor-----")
+            #Datos del receptor
+            razon_social_receptor = xml_en_binario[1].get('Nombre')
+            print('Razon social receptor', razon_social_receptor)
+            regimen_fiscal_receptor = xml_en_binario[1].get('UsoCFDI')
+            print('regimen fiscal receptor', regimen_fiscal_receptor)
+            rfc_receptor = xml_en_binario[1].get('Rfc')
+            print('Razon social receptor', rfc_receptor)
+            
+            print("-----Addenda-----")
+            #Datos de la addenda Open League
+            purchase_order = xml_en_binario[5][0][0][0][0].text
+            print('orden de compra', purchase_order)
+            no_expedientegl = xml_en_binario[5][0][0][0][1].text
+            print('no. expediente GL', no_expedientegl)
+            centro_sucursal = xml_en_binario[5][0][0][0][2].text
+            print('centro sucursal', centro_sucursal)
+            ref_transporte = xml_en_binario[5][0][0][0][3].text
+            print('ref transporte', ref_transporte)
+
+            #list_xml = list(xml_en_binario)
+            #print(list_xml)
 
 
-            ##------apartado para crear  PDF ----------
+            
+            opcion = request.POST.get('opcion')
+            if opcion == 'descargar':
+                response = HttpResponse(content_type='applicaction/pdf')
+                response['Content-Disposition'] = 'attachment; filename=XML con Addenda.pdf'
+                buffer = BytesIO()
+                c = canvas.Canvas(buffer, pagesize=A4)
+                c.setLineWidth(.3)
+                c.setFont('Helvetica', 22)
+                c.drawString(30, 750, folio)
+                c.save()
+                pdf = buffer.getvalue()
+                buffer.close()
+                response.write(pdf)
+        
+                return response
 
-            #datos_xml_addenda = etree.fromstring(xml_con_addenda)
+    except Exception as e:
+        print('ecepcion en la vista open leguage => {}'.format(str(e)))
 
-            version = xml_en_binario.get('Version')
-            print('Resultado', version)
-
-
-
-            #c = canvas.Canvas("/home/hsanchez/Documentos/addendas_sitio/addendas/archs_pdf/#ejemplo.pdf")
-            #c.drawString(100, 750, "Hola mundo PDF!")
-            #c.save()
-
-    except NameError:
-        print("Error")
-
-    return render(request, 'addenda_open_lenguage.html',{'xml_ade':xml_con_addenda, 'pdf':c} )
+    return render(request, 'addenda_open_lenguage.html',{'xml_ade':xml_con_addenda} )
 
 
 def Descargar_xml(request, xml_con_addenda):
     response['Content-Disposition'] = 'attachment; xml_con_addenda={}'.format(xml_con_addenda)
 
     return render(request)
+
+
+
+
 
 
 
